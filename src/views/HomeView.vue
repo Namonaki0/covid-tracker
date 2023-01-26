@@ -1,9 +1,13 @@
 <template>
-    <main v-if="!loading">
-        {{ dataObj.countries }}
+    <main v-if="!loadingState">
+        <DataTitle :text="title" :data-date="date"/>
+        <DataBoxes :stats="stats" />
     </main>
 
-    <main class="flex flex-col align-center justify-center text-center" v-else>
+    <main 
+        v-else 
+        class="flex flex-col align-center justify-center text-center"
+    >
         <div class="text-gray-500 text-3xl mt-10 mb-6">
             fetching data...
         </div>
@@ -14,6 +18,9 @@
 <script setup>
 
 import { onMounted, ref } from "vue";
+
+import DataTitle from "@/components/DataTitle"
+import DataBoxes from "@/components/DataBoxes";
 
 const props = defineProps({
     loading: {
@@ -27,24 +34,31 @@ const props = defineProps({
     loadingImage: require('../assets/hourglass.gif')
 })
 
-const dataObj = ref({
+let dataObj = ref({
     date: '',
     stats: {},
     countries: [],
     loading: true
 })
 
+let loadingState = ref(null);
+let stats = ref({})
+let date = ref('')
+
 onMounted(async () => {
     const res = await fetch('https://api.covid19api.com/summary');
     const data = await res.json();
-    console.log(data)
 
-    const dataObj = {
+    dataObj.value = {
         date: data.Date,
         stats: data.Global,
         countries: data.Countries,
         loading: false
     }
+
+    loadingState.value = dataObj.value.loading
+    stats.value = dataObj.value.stats
+    date.value = dataObj.value.date
 })
 
 </script>

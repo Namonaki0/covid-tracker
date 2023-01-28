@@ -2,6 +2,7 @@
     <main v-if="!loadingState">
         <DataTitle :text="title" :data-date="date"/>
         <DataBoxes :stats="stats" />
+        <CountrySelect :countries="countries" @get-country="getCountryData"/>
     </main>
 
     <main 
@@ -20,7 +21,8 @@
 import { onMounted, ref } from "vue";
 
 import DataTitle from "@/components/DataTitle"
-import DataBoxes from "@/components/DataBoxes";
+import DataBoxes from "@/components/DataBoxes"
+import CountrySelect from "@/components/CountrySelect.vue"
 
 const props = defineProps({
     loading: {
@@ -41,9 +43,11 @@ let dataObj = ref({
     loading: true
 })
 
+let title = '';
 let loadingState = ref(null);
 let stats = ref({})
 let date = ref('')
+let countries = ref([])
 
 onMounted(async () => {
     const res = await fetch('https://api.covid19api.com/summary');
@@ -59,6 +63,13 @@ onMounted(async () => {
     loadingState.value = dataObj.value.loading
     stats.value = dataObj.value.stats
     date.value = dataObj.value.date
+    countries.value = dataObj.value.countries
+
+    console.log(dataObj.value)
 })
+
+// getCountryData() {
+
+// }
 
 </script>

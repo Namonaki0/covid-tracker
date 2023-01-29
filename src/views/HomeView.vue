@@ -1,8 +1,13 @@
 <template>
-    <main v-if="!loadingState">
+    <main v-if="!loadingState" class="pb-4">
         <DataTitle :text="title" :data-date="date"/>
         <DataBoxes :stats="stats" />
         <CountrySelect :countries="countries" @get-country="getCountryData"/>
+        <button
+            v-if="stats.Country"
+            @click="clearCountryData"
+            class="bg-green-700 text-white rounded p-3 mt-10 focus:outline-none hover:bg-green-600"
+        >Clear Country</button>
     </main>
 
     <main 
@@ -32,8 +37,7 @@ const props = defineProps({
     title: {
         type: String,
         default: 'Global'
-    },
-    loadingImage: require('../assets/hourglass.gif')
+    }
 })
 
 let dataObj = ref({
@@ -43,13 +47,13 @@ let dataObj = ref({
     loading: true
 })
 
-let title = '';
+let title = ref('');
 let loadingState = ref(null);
 let stats = ref({})
 let date = ref('')
 let countries = ref([])
 
-onMounted(async () => {
+const fetchCovidData = onMounted(async() => {
     const res = await fetch('https://api.covid19api.com/summary');
     const data = await res.json();
 
@@ -60,16 +64,22 @@ onMounted(async () => {
         loading: false
     }
 
+    title.value = "Global"
     loadingState.value = dataObj.value.loading
     stats.value = dataObj.value.stats
     date.value = dataObj.value.date
     countries.value = dataObj.value.countries
 
-    console.log(dataObj.value)
 })
 
-// getCountryData() {
+function getCountryData(country) {
+    stats.value = country
+    title.value = country.Country
+}
 
-// }
+async function clearCountryData() {
+    const data = await fetchCovidData();
+    return data;
+}
 
 </script>

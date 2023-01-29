@@ -17,7 +17,7 @@
 
 <script setup>
     import {ref} from 'vue'
-    emits: ['onSelect']
+    const emit = defineEmits(['onSelect'])
 
     const countryRef = ref({})
 
@@ -31,7 +31,6 @@
 
     function onSelect() {
         const country = props.countries.find(item => item.ID === countryRef.value.value)
-        this.$emit('get-country', country)
-        console.log(country)
+        emit('get-country', country)
     }
 </script>

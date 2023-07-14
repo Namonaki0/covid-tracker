@@ -16,7 +16,7 @@ const options = {
   method: "GET",
   url: "https://covid-19-statistics.p.rapidapi.com/reports",
   headers: {
-    "X-RapidAPI-Key": "45fd083bd6mshcc7adc063f4eb51p1f015bjsn1e4b83bcf140",
+    "X-RapidAPI-Key": process.env.VUE_APP_API_KEY,
     "X-RapidAPI-Host": "covid-19-statistics.p.rapidapi.com",
   },
 };
@@ -55,14 +55,17 @@ async function getCountryData(country, indexVal) {
     <DataBoxes :stats="stats" />
 
     <CountrySelect :countries="countries" @get-country="getCountryData" />
-    <!-- <button
-      class="bg-green-700 text-white rounded p-3 mt-10 focus:outline-none hover:bg-green-600"
-    >
-      Clear Country
-    </button> -->
   </main>
   <main v-else class="flex flex-col align-center justify-center text-center">
-    <div class="text-gray-500 text-3xl mt-10 mb-6">fetching data...</div>
-    <!-- <img :src="loadingImage" class="w-24 m-auto" alt="" /> -->
+    <!-- <div class="text-gray-500 text-3xl mt-10 mb-6">fetching data...</div> -->
+    <div class="text-center">
+      <iconify-icon
+        icon="svg-spinners:ring-resize"
+        class="speech-mark-left"
+        style="color: #545468"
+        width="60"
+        height="60"
+      />
+    </div>
   </main>
 </template>

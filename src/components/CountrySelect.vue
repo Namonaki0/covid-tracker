@@ -4,8 +4,8 @@ import { ref } from "vue";
 const props = defineProps({
   selected: 0,
   countries: {
-    type: Object,
-    default: () => {},
+    type: Array,
+    default: () => [],
   },
 });
 

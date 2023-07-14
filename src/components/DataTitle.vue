@@ -1,27 +1,29 @@
 <template>
-    <div class="text-center">
-        <div class="text-3xl font-bold">{{ text }}</div>
-        <div class="text-2xl mt-4 mb-10">
-            {{ timestamp }}
-        </div>
+  <div class="text-center">
+    <div class="text-3xl font-bold">{{ text }}</div>
+    <div v-if="dataDate" class="text-2xl mt-4 mb-10">
+      latest update: {{ timestamp }}
     </div>
+  </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 
-import moment from 'moment';
+import moment from "moment";
 
-    const props = defineProps({
-        text: {
-            type: String,
-            default: ''
-        },
-        dataDate: {
-            type: String,
-            default: ''
-        }
-    })
+const props = defineProps({
+  text: {
+    type: String,
+    default: "",
+  },
+  dataDate: {
+    type: String,
+    default: "",
+  },
+});
 
-const timestamp = computed(() => moment(props.dataDate).format('MMMM Do YYYY, h:mm:ss a'));
+const timestamp = computed(() =>
+  moment(props.dataDate).format("MMMM Do YYYY, h:mm:ss a")
+);
 </script>

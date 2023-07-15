@@ -11,7 +11,9 @@ import { Icon } from "@iconify/vue";
         width="60"
         height="60"
       />
-      <span class="text-5xl">Covid-19 tracker</span>
+      <Transition name="slide-fade">
+        <span class="text-5xl">Covid-19 tracker</span>
+      </Transition>
     </h1>
     <span
       >API by
@@ -34,5 +36,21 @@ import { Icon } from "@iconify/vue";
   100% {
     color: rgb(0, 165, 0);
   }
+}
+</style>
+
+<style scoped>
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+  opacity: 0;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from {
+  transform: translateX(20px);
+  opacity: 0;
 }
 </style>

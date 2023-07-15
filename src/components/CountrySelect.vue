@@ -28,7 +28,7 @@ async function onSelect() {
     @change="onSelect"
     ref="countryRef"
     :v-model="selected"
-    class="form-select mt-10 block w-full border p-3 rounded"
+    class="form-select mt-10 mb-6 block w-full border p-3 rounded"
   >
     <option value="no-country" class="font-bold text-xl">Select Country</option>
     <option

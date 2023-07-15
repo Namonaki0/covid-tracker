@@ -1,6 +1,9 @@
 <script setup>
 import { onMounted, ref } from "vue";
+import { Icon } from "@iconify/vue";
+
 import axios from "axios";
+
 import DataTitle from "@/components/DataTitle";
 import DataBoxes from "@/components/DataBoxes";
 import CountrySelect from "@/components/CountrySelect";
@@ -57,15 +60,17 @@ async function getCountryData(country, indexVal) {
     <CountrySelect :countries="countries" @get-country="getCountryData" />
   </main>
   <main v-else class="flex flex-col align-center justify-center text-center">
-    <!-- <div class="text-gray-500 text-3xl mt-10 mb-6">fetching data...</div> -->
-    <div class="text-center">
-      <iconify-icon
+    <div class="text-center max-w-max m-auto">
+      <Icon
         icon="svg-spinners:ring-resize"
         class="speech-mark-left"
         style="color: #545468"
         width="60"
         height="60"
       />
+    </div>
+    <div class="text-gray-500 text-3xl mt-10 mb-6">
+      fetching country list...
     </div>
   </main>
 </template>

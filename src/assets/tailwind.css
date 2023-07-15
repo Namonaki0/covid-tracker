@@ -1,5 +1,14 @@
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
+
+@font-face {
+    font-family: 'ChakraPetch';
+    font-weight: 400;
+    src: url('~/src/assets/fonts/ChakraPetch-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'ChakraPetch-Bold';
+    font-weight: 600;
+    src: url('~/src/assets/fonts/ChakraPetch-Bold.ttf') format('truetype');
+}

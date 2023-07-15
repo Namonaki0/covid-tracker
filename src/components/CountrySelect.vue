@@ -30,8 +30,13 @@ async function onSelect() {
     :v-model="selected"
     class="form-select mt-10 block w-full border p-3 rounded"
   >
-    <option value="no-country">Select Country</option>
-    <option v-for="country in countryList" :key="country" :value="country">
+    <option value="no-country" class="font-bold text-xl">Select Country</option>
+    <option
+      v-for="country in countryList"
+      :key="country"
+      :value="country"
+      class="font-bold text-xl"
+    >
       {{ country }}
     </option>
   </select>

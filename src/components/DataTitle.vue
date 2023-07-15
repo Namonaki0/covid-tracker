@@ -1,8 +1,9 @@
 <template>
   <div class="text-center">
-    <div class="text-3xl font-bold">{{ text }}</div>
+    <div class="text-6xl font-bold">{{ countryName }}</div>
     <div v-if="dataDate" class="text-2xl mt-4 mb-10">
-      latest update: {{ timestamp }}
+      <p class="text-md font-bold">latest update:</p>
+      <p>{{ timestamp }}</p>
     </div>
   </div>
 </template>
@@ -13,7 +14,7 @@ import { computed } from "vue";
 import moment from "moment";
 
 const props = defineProps({
-  text: {
+  countryName: {
     type: String,
     default: "",
   },

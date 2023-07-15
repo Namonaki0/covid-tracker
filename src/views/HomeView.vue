@@ -54,7 +54,7 @@ async function getCountryData(country, indexVal) {
 
 <template>
   <main v-if="!loadingState" class="pb-4">
-    <DataTitle :text="title" :dataDate="date" />
+    <DataTitle :countryName="title" :dataDate="date" />
     <DataBoxes :stats="stats" />
 
     <CountrySelect :countries="countries" @get-country="getCountryData" />
